@@ -1,49 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <title>Document</title>
+    <title>Chat App</title>
+    <link rel="icon" href="/img/favicon.png" />
+    <link rel="stylesheet" href="/css/styles.min.css" />
   </head>
   <body>
-    <h4>Chat APP</h4>
-    <!-- <button id="increment">increment</button> -->
-
-    <div id="messages"></div>
-    <div id="locations"></div>
-
-    <form id="message-form">
-      <input
-        type="text"
-        id="message"
-        name="message"
-        placeholder="Enter your message"
-      />
-      <button>Send</button>
-    </form>
-
-    <script id="message-template" type="text/html">
-      <div>
-        <p>{{message}} - {{createdAt}}</p>
+    <div class="centered-form">
+      <div class="centered-form__box">
+        <h1>Join</h1>
+        <form action="/chat.html">
+          <label>Display name</label>
+          <input
+            type="text"
+            name="username"
+            placeholder="Display name"
+            required
+          />
+          <label>Room</label>
+          <input type="text" name="room" placeholder="Room" required />
+          <button>Join</button>
+        </form>
       </div>
-    </script>
-
-    <script id="location-template" type="text/html">
-      <div>
-        <p>
-          <a href="{{url}}" target="_blank"
-            >My Current Location - {{createdAt}}</a
-          >
-        </p>
-      </div>
-    </script>
-
-    <button id="send-location">Send locations</button>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/libs/jquery-3.1.0.min.js"></script>
-    <script src="/js/libs/moment.js"></script>
-    <script src="/js/libs/mustache.js"></script>
-    <script src="/js/chat.js"></script>
+    </div>
   </body>
 </html>
