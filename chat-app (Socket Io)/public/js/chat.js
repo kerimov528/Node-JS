@@ -5,6 +5,12 @@ const $messageFormInput = $messageForm.querySelector('input')
 const $messageFormButton = $messageForm.querySelector('button')
 const $sendLocationButton = document.querySelector('#send-location')
 
+const $messages = document.querySelector('#messages')
+const $messageTemplate = document.querySelector('#message-template').innerHTML
+
+const $locations = document.querySelector('#locations')
+const $locationTemplate = document.querySelector('#location-template').innerHTML
+
 // --------------------------------------------------
 
 // Lesson 1: Sending and receiving events
@@ -24,6 +30,21 @@ const $sendLocationButton = document.querySelector('#send-location')
 
 socket.on('message', (message) => {
     console.log('The message is: ', message);
+    const html = Mustache.render($messageTemplate, {
+        message: message.text,
+        createdAt: moment(message.createdAt).format('h:mm a')
+    })
+    $messages.insertAdjacentHTML('beforeend', html)
+})
+
+socket.on('locationMessage', (url) => {
+    console.log('The location is: ', url);
+    const html2 = Mustache.render($locationTemplate, {
+        url: url.url,
+        createdAt: moment(url.createdAt).format('h:mm a')
+    })
+
+    $locations.insertAdjacentHTML('beforeend', html2)
 })
 
 $messageForm.addEventListener('submit', (e) => {
